@@ -17,7 +17,7 @@ const RecoverTime = () => {
           </div>
           <div className="space-y-4">
             <p className="font-semibold">
-              With <span className="text-berry-purple">450+ locations</span>, <span className="text-berry-purple">5,000 professionally trained team members</span> and over <span className="text-berry-purple">six million hours</span> spent cleaning annually, we are specialists in exceptional residential cleaning.
+              With our dedicated team of cleaning professionals and commitment to excellence, we deliver exceptional residential cleaning services tailored to your needs. Trust us to maintain your home while you focus on what matters most to you.
             </p>
             <Button className="bg-berry-purple hover:bg-berry-purple/90 text-white">
               Book Now
