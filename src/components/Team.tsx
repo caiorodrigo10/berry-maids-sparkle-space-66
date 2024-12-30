@@ -12,7 +12,7 @@ const team = [
   {
     name: "Michael Chen",
     role: "Senior Cleaner",
-    image: "https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?q=80&w=2070",
     specialties: ["Move-in/Move-out", "Window Cleaning"],
     experience: "5+ years"
   },
