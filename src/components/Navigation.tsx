@@ -47,7 +47,7 @@ const Navigation = () => {
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center">
           <img 
-            src="/images/berry-maids-logo.png" 
+            src="/images/placeholder-logo.png" 
             alt="Berry Maids Logo" 
             className="h-16 w-auto hover:opacity-90 transition-opacity" 
           />
