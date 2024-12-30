@@ -21,7 +21,7 @@ const ExtrasStep = ({ extras, setExtras }: ExtrasStepProps) => {
                   : extras.filter((e) => e !== extra)
               )
             }
-            className="w-full"
+            className="w-full h-[48px] text-base"
           >
             {extra}
           </Toggle>

@@ -18,14 +18,14 @@ const RoomsStep = ({ bedrooms, setBedrooms, bathrooms, setBathrooms }: RoomsStep
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={() => setBedrooms(Math.max(0, bedrooms - 1))}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="w-[48px] h-[48px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
           >
             <Minus size={20} />
           </button>
           <span className="text-2xl w-8 text-center">{bedrooms}</span>
           <button
             onClick={() => setBedrooms(bedrooms + 1)}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="w-[48px] h-[48px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
           >
             <Plus size={20} />
           </button>
@@ -40,14 +40,14 @@ const RoomsStep = ({ bedrooms, setBedrooms, bathrooms, setBathrooms }: RoomsStep
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={() => setBathrooms(Math.max(0, bathrooms - 1))}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="w-[48px] h-[48px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
           >
             <Minus size={20} />
           </button>
           <span className="text-2xl w-8 text-center">{bathrooms}</span>
           <button
             onClick={() => setBathrooms(bathrooms + 1)}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="w-[48px] h-[48px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
           >
             <Plus size={20} />
           </button>
