@@ -22,7 +22,7 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
         <Button
           onClick={nextStep}
           disabled={step === 5}
-          className="gap-2"
+          className="gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
         >
           Next <ChevronRight />
         </Button>
