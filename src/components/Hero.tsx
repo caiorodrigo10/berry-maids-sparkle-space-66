@@ -14,10 +14,12 @@ const Hero = () => {
         <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
           Berry Maids
         </h1>
-        <p className="text-xl md:text-2xl mb-8 relative inline-block">
-          You Relax, We'll Take Care of the Rest
-          <span className="absolute bottom-[-8px] left-0 w-full h-1 bg-berry-lime"></span>
-        </p>
+        <div className="mb-12">
+          <p className="text-xl md:text-2xl mb-8 relative inline-block">
+            You Relax, We'll Take Care of the Rest
+            <span className="absolute bottom-[-8px] left-0 w-full h-1 bg-berry-lime"></span>
+          </p>
+        </div>
         <Button className="btn-primary text-lg">
           BOOK NOW
         </Button>
