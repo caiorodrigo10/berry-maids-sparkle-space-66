@@ -10,11 +10,11 @@ const Hero = () => {
       />
       <Navigation />
       <div className="relative z-10 container mx-auto text-center px-4">
-        <h1 className="text-5xl md:text-7xl mb-4 font-bauhaus">
+        <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
           You Relax, We'll Take Care of the Rest
         </h1>
         <div className="mb-12">
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Experience the ultimate in home cleaning services. Our professional team brings sparkle and shine to every corner of your home, letting you focus on what matters most.
           </p>
         </div>
