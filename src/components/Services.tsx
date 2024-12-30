@@ -31,7 +31,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="section-padding bg-[#F2FCE2]">
+    <section className="section-padding bg-white">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
           Our Services
