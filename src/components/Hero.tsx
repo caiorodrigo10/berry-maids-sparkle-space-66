@@ -10,7 +10,7 @@ const Hero = () => {
       />
       <Navigation />
       <div className="relative z-10 container mx-auto text-center px-4">
-        <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
+        <h1 className="text-5xl md:text-6xl mb-4 font-bauhaus">
           You Relax, We'll Take Care of the Rest
         </h1>
         <div className="mb-12">
