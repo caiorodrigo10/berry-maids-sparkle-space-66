@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
 
 interface StepNavigationProps {
   step: number;
@@ -8,13 +9,22 @@ interface StepNavigationProps {
 }
 
 const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
+  const navigate = useNavigate();
+
+  const handlePrevClick = () => {
+    if (step === 1) {
+      navigate('/');
+    } else {
+      prevStep();
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between mt-8">
         <Button
           variant="outline"
-          onClick={prevStep}
-          disabled={step === 1}
+          onClick={handlePrevClick}
           className="gap-2"
         >
           <ChevronLeft /> Previous
