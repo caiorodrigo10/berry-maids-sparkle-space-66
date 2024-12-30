@@ -19,7 +19,7 @@ const RecoverTime = () => {
             <p className="font-semibold">
               With our dedicated team of cleaning professionals and commitment to excellence, we deliver exceptional residential cleaning services tailored to your needs. Trust us to maintain your home while you focus on what matters most to you.
             </p>
-            <Button className="bg-berry-purple hover:bg-berry-purple/90 text-white">
+            <Button className="w-[140px] h-[48px] text-base font-semibold uppercase bg-berry-purple hover:bg-berry-purple/90 text-white">
               Book Now
             </Button>
           </div>
