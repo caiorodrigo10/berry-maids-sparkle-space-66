@@ -9,7 +9,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import RecoverTime from '@/components/RecoverTime';
 import LiveMore from '@/components/LiveMore';
-import PriceEstimator from '@/components/PriceEstimator';
+import EstimateCTA from '@/components/EstimateCTA';
 
 const Index = () => {
   return (
@@ -21,7 +21,7 @@ const Index = () => {
       <div id="services">
         <Services />
       </div>
-      <PriceEstimator />
+      <EstimateCTA />
       <div id="areas">
         <ServiceAreas />
       </div>
