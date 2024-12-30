@@ -24,7 +24,7 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
         <h3 className="text-xl font-semibold">How dirty is it?</h3>
       </div>
       
-      <div className="flex justify-between gap-2 px-2">
+      <div className="flex justify-center gap-4 px-2">
         {[1, 2, 3, 4, 5].map((level) => (
           <div key={level} className="flex flex-col items-center space-y-2">
             <button
