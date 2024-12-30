@@ -39,7 +39,7 @@ const PriceEstimator = () => {
       case 1:
         return (
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <Home className="text-berry-purple" />
               <h3 className="text-xl font-semibold">House Size</h3>
             </div>
@@ -60,7 +60,7 @@ const PriceEstimator = () => {
         return (
           <div className="space-y-6">
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <Bed className="text-berry-purple" />
                 <h3 className="text-xl font-semibold">How many bedrooms?</h3>
               </div>
@@ -82,7 +82,7 @@ const PriceEstimator = () => {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <Bath className="text-berry-purple" />
                 <h3 className="text-xl font-semibold">How many bathrooms?</h3>
               </div>
