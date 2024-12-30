@@ -14,15 +14,38 @@ const PriceEstimator = () => {
   const [bathrooms, setBathrooms] = useState(1);
   const [cleanLevel, setCleanLevel] = useState(3);
   const [extras, setExtras] = useState<string[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('price-estimator');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
 
   const calculatePrice = () => {
-    let basePrice = size[0] * 0.5; // $0.50 per sq ft
-    basePrice += bedrooms * 50; // $50 per bedroom
-    basePrice += bathrooms * 70; // $70 per bathroom
-    basePrice *= cleanLevel * 0.2 + 1; // Multiplier based on cleanliness level
+    let basePrice = size[0] * 0.5;
+    basePrice += bedrooms * 50;
+    basePrice += bathrooms * 70;
+    basePrice *= cleanLevel * 0.2 + 1;
     
     extras.forEach(extra => {
-      basePrice += 30; // $30 per extra
+      basePrice += 30;
     });
 
     return basePrice.toFixed(2);
@@ -63,7 +86,7 @@ const PriceEstimator = () => {
   };
 
   return (
-    <section id="price-estimator" className="section-padding bg-white">
+    <section id="price-estimator" className={`section-padding bg-white transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
           Calculate Your Price
