@@ -48,7 +48,7 @@ const EstimateSummary = ({
         
         {/* House Size Section */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Home className="text-berry-purple" />
             <span className="font-medium">House Size</span>
           </div>
@@ -66,7 +66,7 @@ const EstimateSummary = ({
 
         {/* Rooms Section */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Bed className="text-berry-purple" />
             <span className="font-medium">Bedrooms</span>
           </div>
@@ -86,7 +86,7 @@ const EstimateSummary = ({
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Bath className="text-berry-purple" />
             <span className="font-medium">Bathrooms</span>
           </div>
@@ -109,7 +109,7 @@ const EstimateSummary = ({
 
         {/* Cleanliness Level */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Home className="text-berry-purple" />
             <span className="font-medium">Cleanliness Level</span>
           </div>
@@ -138,7 +138,7 @@ const EstimateSummary = ({
 
         {/* Extra Services */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <Home className="text-berry-purple" />
             <span className="font-medium">Additional Services</span>
           </div>
