@@ -4,6 +4,7 @@ import HouseSizeStep from './estimator/HouseSizeStep';
 import RoomsStep from './estimator/RoomsStep';
 import CleanlinessStep from './estimator/CleanlinessStep';
 import ExtrasStep from './estimator/ExtrasStep';
+import ContactInfoStep from './estimator/ContactInfoStep';
 import PriceDisplay from './estimator/PriceDisplay';
 import StepNavigation from './estimator/StepNavigation';
 
@@ -14,6 +15,9 @@ const PriceEstimator = () => {
   const [bathrooms, setBathrooms] = useState(1);
   const [cleanLevel, setCleanLevel] = useState(3);
   const [extras, setExtras] = useState<string[]>([]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [isVisible, setIsVisible] = useState(false);
 
   React.useEffect(() => {
@@ -52,7 +56,7 @@ const PriceEstimator = () => {
   };
 
   const nextStep = () => {
-    if (step < 6) setStep(step + 1);
+    if (step < 7) setStep(step + 1);
   };
 
   const prevStep = () => {
@@ -79,6 +83,17 @@ const PriceEstimator = () => {
       case 5:
         return <ExtrasStep extras={extras} setExtras={setExtras} />;
       case 6:
+        return (
+          <ContactInfoStep
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            phone={phone}
+            setPhone={setPhone}
+          />
+        );
+      case 7:
         return <PriceDisplay price={calculatePrice()} />;
       default:
         return null;
