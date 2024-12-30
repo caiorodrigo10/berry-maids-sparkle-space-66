@@ -45,7 +45,7 @@ const LiveMore = () => {
             {features.map((feature, index) => (
               <div key={index} className="flex gap-4 items-start">
                 <div className="mt-1">
-                  <Check className="text-berry-lime w-5 h-5" />
+                  <Check className="text-berry-purple w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-berry-purple font-bauhaus text-lg mb-1">
