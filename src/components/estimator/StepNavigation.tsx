@@ -31,7 +31,7 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
         </Button>
         <Button
           onClick={nextStep}
-          disabled={step === 6}
+          disabled={step === 7}
           className="gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
         >
           Next <ChevronRight />
@@ -40,7 +40,7 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
 
       <div className="mt-4 flex justify-center">
         <span className="text-sm text-gray-500">
-          Step {step} of 6
+          Step {step} of 7
         </span>
       </div>
     </>
