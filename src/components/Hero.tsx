@@ -10,10 +10,10 @@ const Hero = () => {
       />
       <Navigation />
       <div className="relative z-10 container mx-auto text-center px-4">
-        <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
-          Berry Maids
+        <h1 className="text-5xl md:text-7xl mb-4 font-bauhaus">
+          You Relax, We'll Take Care of the Rest
           <span className="block text-2xl md:text-3xl mt-2 font-montserrat">
-            You Relax, We'll Take Care of the Rest
+            Berry Maids
           </span>
         </h1>
         <div className="mb-12">
