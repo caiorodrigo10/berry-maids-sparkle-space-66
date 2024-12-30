@@ -18,6 +18,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+        bauhaus: ["Bauhaus", "sans-serif"],
+      },
       colors: {
         berry: {
           purple: "#864AAA",
