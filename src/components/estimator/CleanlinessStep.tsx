@@ -7,15 +7,9 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
   const getLevelDescription = (level: number) => {
     switch (level) {
       case 1:
-        return "Light cleaning needed - Just needs a refresh";
-      case 2:
-        return "Regular cleaning - Some visible dirt";
-      case 3:
-        return "Moderate cleaning - Noticeable dirt";
-      case 4:
-        return "Deep cleaning - Heavy dirt buildup";
+        return "Leve - Pouca sujeira";
       case 5:
-        return "Extreme cleaning - Extensive dirt/mess";
+        return "Pesado - Muita sujeira";
       default:
         return "";
     }
@@ -28,12 +22,12 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
         <p className="text-center text-gray-600 text-lg">Select the level that best describes your space</p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="flex justify-between gap-2 px-2">
         {[1, 2, 3, 4, 5].map((level) => (
           <div key={level} className="flex flex-col items-center space-y-2">
             <button
               onClick={() => setCleanLevel(level)}
-              className={`w-full h-[48px] rounded-lg border-2 transition-all text-xl font-semibold uppercase
+              className={`w-[48px] h-[48px] rounded-lg border-2 transition-all text-xl font-semibold uppercase
                 ${cleanLevel === level 
                   ? 'border-berry-purple bg-berry-purple text-white' 
                   : 'border-gray-200 hover:border-berry-purple text-gray-700'
@@ -41,9 +35,11 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
             >
               {level}
             </button>
-            <p className="text-sm text-center text-gray-600 px-2">
-              {getLevelDescription(level)}
-            </p>
+            {(level === 1 || level === 5) && (
+              <p className="text-xs text-center text-gray-600">
+                {getLevelDescription(level)}
+              </p>
+            )}
           </div>
         ))}
       </div>
