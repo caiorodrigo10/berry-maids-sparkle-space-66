@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Navigation from './Navigation';
+import { useNavigate } from 'react-router-dom';
+import { Calculator } from 'lucide-react';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-[90vh] flex items-center justify-center bg-black text-berry-white">
       <div 
@@ -18,8 +22,12 @@ const Hero = () => {
             Experience the ultimate in home cleaning services. Our professional team brings sparkle and shine to every corner of your home, letting you focus on what matters most.
           </p>
         </div>
-        <Button className="bg-[#864AAA] hover:bg-[#864AAA]/90 text-white text-lg px-8 py-3">
-          BOOK NOW
+        <Button 
+          onClick={() => navigate('/estimate')}
+          className="bg-berry-purple hover:bg-berry-purple/90 text-white h-[48px] px-8 text-base font-semibold uppercase"
+        >
+          <Calculator className="mr-2 h-5 w-5" />
+          Get Your Estimate
         </Button>
       </div>
     </div>
