@@ -12,11 +12,13 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto text-center px-4">
         <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
           Berry Maids
+          <span className="block text-2xl md:text-3xl mt-2 font-montserrat">
+            You Relax, We'll Take Care of the Rest
+          </span>
         </h1>
         <div className="mb-12">
-          <p className="text-xl md:text-2xl mb-8 relative inline-block">
-            You Relax, We'll Take Care of the Rest
-            <span className="absolute bottom-[-8px] left-0 w-full h-1 bg-berry-lime"></span>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+            Experience the ultimate in home cleaning services. Our professional team brings sparkle and shine to every corner of your home, letting you focus on what matters most.
           </p>
         </div>
         <Button className="bg-[#864AAA] hover:bg-[#864AAA]/90 text-white text-lg px-8 py-3">
