@@ -19,7 +19,7 @@ const Hero = () => {
             <span className="absolute bottom-[-8px] left-0 w-full h-1 bg-berry-lime"></span>
           </p>
         </div>
-        <Button className="btn-header text-lg">
+        <Button className="bg-[#864AAA] hover:bg-[#864AAA]/90 text-white text-lg px-8 py-3">
           BOOK NOW
         </Button>
       </div>

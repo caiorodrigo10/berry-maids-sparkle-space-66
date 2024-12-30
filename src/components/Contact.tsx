@@ -30,7 +30,7 @@ const Contact = () => {
             rows={4}
           />
           <div className="text-center">
-            <Button className="btn-primary">
+            <Button className="bg-[#C1FF52] hover:bg-[#C1FF52]/90 text-black px-8 py-3">
               Get Quote
             </Button>
           </div>
