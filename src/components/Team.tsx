@@ -38,11 +38,11 @@ const Team = () => {
               key={index}
               className="group relative overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="aspect-w-3 aspect-h-4">
+              <div className="relative w-full pb-[125%]">
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </div>
               <div className="p-6">
