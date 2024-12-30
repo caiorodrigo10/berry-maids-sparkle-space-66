@@ -12,7 +12,7 @@ const LocationStep = () => {
       <div className="space-y-6">
         <div className="flex items-center gap-3 text-berry-purple">
           <MapPin className="w-6 h-6" />
-          <h3 className="text-2xl md:text-3xl font-bauhaus uppercase">Your Location</h3>
+          <h3 className="text-2xl md:text-3xl font-bauhaus">Your Location</h3>
         </div>
 
         <div className="space-y-4">
