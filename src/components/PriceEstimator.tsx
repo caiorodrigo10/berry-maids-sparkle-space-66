@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import EstimateDisclaimer from './estimator/EstimateDisclaimer';
 import LocationStep from './estimator/LocationStep';
 import HouseSizeStep from './estimator/HouseSizeStep';
 import RoomsStep from './estimator/RoomsStep';
@@ -64,26 +63,22 @@ const PriceEstimator = () => {
   };
 
   return (
-    <>
-      <EstimateDisclaimer />
-      
-      <section id="price-estimator" className="section-padding bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
-            Calculate Your Price
-          </h2>
-          
-          <div className="max-w-3xl mx-auto">
-            {renderStep()}
-            <StepNavigation
-              step={step}
-              prevStep={prevStep}
-              nextStep={nextStep}
-            />
-          </div>
+    <section id="price-estimator" className="section-padding bg-white">
+      <div className="container mx-auto">
+        <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
+          Calculate Your Price
+        </h2>
+        
+        <div className="max-w-3xl mx-auto">
+          {renderStep()}
+          <StepNavigation
+            step={step}
+            prevStep={prevStep}
+            nextStep={nextStep}
+          />
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
