@@ -10,9 +10,6 @@ const Hero = () => {
       />
       <Navigation />
       <div className="relative z-10 container mx-auto text-center px-4">
-        <div className="animate-float mb-8">
-          <img src="/images/logo.png" alt="Berry Maids Logo" className="mx-auto h-32 w-auto" />
-        </div>
         <h1 className="text-4xl md:text-6xl mb-4 font-bauhaus">
           Berry Maids
         </h1>
