@@ -94,7 +94,21 @@ const PriceEstimator = () => {
           />
         );
       case 7:
-        return <PriceDisplay price={calculatePrice()} />;
+        return (
+          <PriceDisplay
+            price={calculatePrice()}
+            size={size}
+            setSize={setSize}
+            bedrooms={bedrooms}
+            setBedrooms={setBedrooms}
+            bathrooms={bathrooms}
+            setBathrooms={setBathrooms}
+            cleanLevel={cleanLevel}
+            setCleanLevel={setCleanLevel}
+            extras={extras}
+            setExtras={setExtras}
+          />
+        );
       default:
         return null;
     }
