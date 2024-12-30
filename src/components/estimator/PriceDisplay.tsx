@@ -27,11 +27,14 @@ const PriceDisplay = ({
   extras,
   setExtras,
 }: PriceDisplayProps) => {
+  // Remove .00 from price if it exists
+  const formattedPrice = price.replace('.00', '');
+
   return (
     <div className="space-y-8">
-      <div className="bg-berry-purple text-white p-6 rounded-lg">
+      <div className="bg-[#F2FCE2] text-berry-purple p-6 rounded-lg">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-4xl font-bold">${price}</span>
+          <span className="text-4xl font-bold">${formattedPrice}</span>
         </div>
         <p className="text-center mt-2 text-sm opacity-90">
           Estimated price for one-time cleaning
