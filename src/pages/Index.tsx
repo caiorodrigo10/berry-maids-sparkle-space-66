@@ -15,6 +15,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Hero />
       <RecoverTime />
+      <Features />
       <LiveMore />
       <div id="services">
         <Services />
@@ -22,7 +23,6 @@ const Index = () => {
       <div id="areas">
         <ServiceAreas />
       </div>
-      <Features />
       <BeforeAfter />
       <div id="team">
         <Team />
