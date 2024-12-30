@@ -30,11 +30,12 @@ const LocationStep = () => {
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg">
-            <div className="aspect-video rounded-lg bg-gray-200">
-              {/* Placeholder for future map integration */}
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                Map preview will be shown here
-              </div>
+            <div className="aspect-video rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?auto=format&fit=crop&w=800&q=80" 
+                alt="Street view map illustration" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
