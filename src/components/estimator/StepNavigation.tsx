@@ -29,13 +29,22 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
         >
           <ChevronLeft /> Previous
         </Button>
-        <Button
-          onClick={nextStep}
-          disabled={step === 7}
-          className="gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
-        >
-          Next <ChevronRight />
-        </Button>
+        {step === 7 ? (
+          <Button
+            onClick={() => window.location.href = '#'}
+            className="gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
+          >
+            Schedule Now
+          </Button>
+        ) : (
+          <Button
+            onClick={nextStep}
+            disabled={step === 7}
+            className="gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
+          >
+            Next <ChevronRight />
+          </Button>
+        )}
       </div>
 
       <div className="mt-4 flex justify-center">
