@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button';
 const Hero = () => {
   return (
     <div className="relative min-h-[90vh] flex items-center justify-center bg-black text-berry-white">
-      <div className="absolute inset-0 bg-[url('/images/cleaning-bg.jpg')] bg-cover bg-center opacity-50" />
+      <div 
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070')] bg-cover bg-center opacity-50" 
+      />
       <div className="relative z-10 container mx-auto text-center px-4">
         <div className="animate-float mb-8">
           <img src="/images/logo.png" alt="Berry Maids Logo" className="mx-auto h-32 w-auto" />
