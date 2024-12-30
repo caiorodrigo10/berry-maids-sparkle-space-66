@@ -101,13 +101,13 @@ const PriceEstimator = () => {
   };
 
   return (
-    <section id="price-estimator" className={`py-32 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      <div className="container mx-auto px-0 sm:px-6">
+    <section id="price-estimator" className={`py-32 px-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple font-bauhaus">
           Calculate Your Price
         </h2>
         
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto px-4">
           {renderStep()}
           <StepNavigation
             step={step}
