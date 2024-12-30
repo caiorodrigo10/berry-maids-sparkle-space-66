@@ -24,8 +24,8 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
   return (
     <div className="space-y-8">
       <div className="space-y-4">
-        <h3 className="text-3xl font-semibold text-center text-berry-purple">How dirty is it?</h3>
-        <p className="text-center text-gray-600">Select the level that best describes your space</p>
+        <h3 className="text-2xl md:text-3xl font-semibold text-center text-berry-purple uppercase font-bauhaus">How dirty is it?</h3>
+        <p className="text-center text-gray-600 text-lg">Select the level that best describes your space</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -33,7 +33,7 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
           <div key={level} className="flex flex-col items-center space-y-2">
             <button
               onClick={() => setCleanLevel(level)}
-              className={`w-full py-6 rounded-lg border-2 transition-all text-xl font-semibold
+              className={`w-full h-[48px] rounded-lg border-2 transition-all text-xl font-semibold uppercase
                 ${cleanLevel === level 
                   ? 'border-berry-purple bg-berry-purple text-white' 
                   : 'border-gray-200 hover:border-berry-purple text-gray-700'
@@ -41,7 +41,7 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
             >
               {level}
             </button>
-            <p className="text-xs text-center text-gray-600 px-2">
+            <p className="text-sm text-center text-gray-600 px-2">
               {getLevelDescription(level)}
             </p>
           </div>

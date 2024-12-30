@@ -25,14 +25,14 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
         <Button
           variant="outline"
           onClick={handlePrevClick}
-          className="w-[140px] h-[48px] text-base"
+          className="w-[140px] h-[48px] text-base font-semibold uppercase"
         >
           <ChevronLeft className="mr-2 h-4 w-4" /> Previous
         </Button>
         {step === 7 ? (
           <Button
             onClick={() => window.location.href = '#'}
-            className="w-[140px] h-[48px] text-base gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
+            className="w-[140px] h-[48px] text-base font-semibold uppercase gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
           >
             Schedule Now
           </Button>
@@ -40,7 +40,7 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
           <Button
             onClick={nextStep}
             disabled={step === 7}
-            className="w-[140px] h-[48px] text-base gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
+            className="w-[140px] h-[48px] text-base font-semibold uppercase gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
           >
             Next <ChevronRight className="h-4 w-4" />
           </Button>
@@ -48,7 +48,7 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
       </div>
 
       <div className="mt-4 flex justify-center">
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 uppercase">
           Step {step} of 7
         </span>
       </div>
