@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button } from './ui/button';
+import { useNavigate } from 'react-router-dom';
+import { Calculator } from 'lucide-react';
 
 const RecoverTime = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -19,8 +23,12 @@ const RecoverTime = () => {
             <p className="font-semibold">
               With our dedicated team of cleaning professionals and commitment to excellence, we deliver exceptional residential cleaning services tailored to your needs. Trust us to maintain your home while you focus on what matters most to you.
             </p>
-            <Button className="w-[140px] h-[48px] text-base font-semibold uppercase bg-berry-purple hover:bg-berry-purple/90 text-white">
-              Book Now
+            <Button 
+              onClick={() => navigate('/estimate')}
+              className="bg-berry-purple hover:bg-berry-purple/90 text-white h-[48px] px-8 text-base font-semibold uppercase"
+            >
+              <Calculator className="mr-2 h-5 w-5" />
+              Get Your Estimate
             </Button>
           </div>
         </div>
