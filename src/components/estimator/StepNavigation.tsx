@@ -29,17 +29,9 @@ const StepNavigation = ({ step, prevStep, nextStep }: StepNavigationProps) => {
         >
           <ChevronLeft className="mr-2 h-4 w-4" /> Previous
         </Button>
-        {step === 7 ? (
-          <Button
-            onClick={() => window.location.href = '#'}
-            className="w-[140px] h-[48px] text-base font-semibold uppercase gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
-          >
-            Schedule Now
-          </Button>
-        ) : (
+        {step !== 7 && (
           <Button
             onClick={nextStep}
-            disabled={step === 7}
             className="w-[140px] h-[48px] text-base font-semibold uppercase gap-2 bg-berry-purple hover:bg-berry-purple/90 text-white"
           >
             Next <ChevronRight className="h-4 w-4" />
