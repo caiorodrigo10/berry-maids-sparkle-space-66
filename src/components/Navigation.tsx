@@ -14,6 +14,16 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <div className={cn(
       "w-full py-4 transition-all duration-300 z-50 absolute top-0 left-0",
@@ -27,22 +37,34 @@ const Navigation = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuLink className="text-berry-white hover:text-berry-lime px-4" href="#services">
+              <NavigationMenuLink 
+                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
+                onClick={() => scrollToSection('services')}
+              >
                 Services
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink className="text-berry-white hover:text-berry-lime px-4" href="#areas">
+              <NavigationMenuLink 
+                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
+                onClick={() => scrollToSection('areas')}
+              >
                 Areas
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink className="text-berry-white hover:text-berry-lime px-4" href="#team">
+              <NavigationMenuLink 
+                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
+                onClick={() => scrollToSection('team')}
+              >
                 Team
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink className="text-berry-white hover:text-berry-lime px-4" href="#contact">
+              <NavigationMenuLink 
+                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
+                onClick={() => scrollToSection('contact')}
+              >
                 Contact
               </NavigationMenuLink>
             </NavigationMenuItem>
