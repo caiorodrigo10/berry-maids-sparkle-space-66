@@ -30,11 +30,11 @@ const LocationStep = () => {
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg">
-            <div className="aspect-video rounded-lg overflow-hidden">
+            <div className="aspect-[16/9] rounded-lg overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?auto=format&fit=crop&w=800&q=80" 
-                alt="Street view map illustration" 
-                className="w-full h-full object-cover"
+                src="/lovable-uploads/efdd7117-73e9-4c8f-adac-0454095b5d7e.png" 
+                alt="Florida Mall area map" 
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
