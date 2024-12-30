@@ -7,11 +7,15 @@ import BeforeAfter from '@/components/BeforeAfter';
 import Team from '@/components/Team';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import RecoverTime from '@/components/RecoverTime';
+import LiveMore from '@/components/LiveMore';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
+      <RecoverTime />
+      <LiveMore />
       <div id="services">
         <Services />
       </div>
