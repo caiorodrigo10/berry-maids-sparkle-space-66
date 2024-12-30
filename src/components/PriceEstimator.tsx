@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Bed, Bath, Home, Plus, Minus, DollarSign } from 'lucide-react';
+import { Bed, Bath, Home, Plus, Minus, DollarSign, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
 import { Toggle } from "@/components/ui/toggle";
+import { Button } from "@/components/ui/button";
 
 const PriceEstimator = () => {
+  const [step, setStep] = useState(1);
   const [size, setSize] = useState([100]);
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
@@ -11,32 +13,35 @@ const PriceEstimator = () => {
   const [extras, setExtras] = useState<string[]>([]);
 
   const calculatePrice = () => {
-    let basePrice = size[0] * 0.5; // R$0.50 por m²
-    basePrice += bedrooms * 50; // R$50 por quarto
-    basePrice += bathrooms * 70; // R$70 por banheiro
-    basePrice *= cleanLevel * 0.2 + 1; // Multiplicador baseado no nível de sujeira
+    let basePrice = size[0] * 0.5; // $0.50 per sq ft
+    basePrice += bedrooms * 50; // $50 per bedroom
+    basePrice += bathrooms * 70; // $70 per bathroom
+    basePrice *= cleanLevel * 0.2 + 1; // Multiplier based on cleanliness level
     
-    // Adiciona extras
+    // Add extras
     extras.forEach(extra => {
-      basePrice += 30; // R$30 por extra
+      basePrice += 30; // $30 per extra
     });
 
     return basePrice.toFixed(2);
   };
 
-  return (
-    <section className="section-padding bg-white">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
-          Calcule o Valor
-        </h2>
-        
-        <div className="max-w-3xl mx-auto space-y-8">
-          {/* Tamanho da Casa */}
+  const nextStep = () => {
+    if (step < 5) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Home className="text-berry-purple" />
-              <h3 className="text-xl font-semibold">Tamanho da Casa</h3>
+              <h3 className="text-xl font-semibold">House Size</h3>
             </div>
             <div className="px-4">
               <Slider
@@ -46,16 +51,18 @@ const PriceEstimator = () => {
                 step={10}
                 className="w-full"
               />
-              <p className="text-center mt-2">{size[0]}m²</p>
+              <p className="text-center mt-2">{size[0]} sq ft</p>
             </div>
           </div>
+        );
 
-          {/* Quartos e Banheiros */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      case 2:
+        return (
+          <div className="space-y-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Bed className="text-berry-purple" />
-                <h3 className="text-xl font-semibold">Quartos</h3>
+                <h3 className="text-xl font-semibold">How many bedrooms?</h3>
               </div>
               <div className="flex items-center justify-center gap-4">
                 <button
@@ -77,7 +84,7 @@ const PriceEstimator = () => {
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Bath className="text-berry-purple" />
-                <h3 className="text-xl font-semibold">Banheiros</h3>
+                <h3 className="text-xl font-semibold">How many bathrooms?</h3>
               </div>
               <div className="flex items-center justify-center gap-4">
                 <button
@@ -96,10 +103,12 @@ const PriceEstimator = () => {
               </div>
             </div>
           </div>
+        );
 
-          {/* Nível de Limpeza */}
+      case 3:
+        return (
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Nível de Sujeira</h3>
+            <h3 className="text-xl font-semibold">How dirty is it?</h3>
             <div className="flex justify-between gap-2">
               {[1, 2, 3, 4, 5].map((level) => (
                 <button
@@ -116,19 +125,21 @@ const PriceEstimator = () => {
               ))}
             </div>
             <p className="text-sm text-gray-500 text-center">
-              {cleanLevel === 1 && "Pouco suja"}
-              {cleanLevel === 2 && "Levemente suja"}
-              {cleanLevel === 3 && "Sujeira normal"}
-              {cleanLevel === 4 && "Muito suja"}
-              {cleanLevel === 5 && "Extremamente suja"}
+              {cleanLevel === 1 && "Slightly dirty"}
+              {cleanLevel === 2 && "Moderately dirty"}
+              {cleanLevel === 3 && "Average dirty"}
+              {cleanLevel === 4 && "Very dirty"}
+              {cleanLevel === 5 && "Extremely dirty"}
             </p>
           </div>
+        );
 
-          {/* Extras */}
+      case 4:
+        return (
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Serviços Adicionais</h3>
+            <h3 className="text-xl font-semibold">Additional Services</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {['Janelas', 'Geladeira', 'Forno', 'Armários'].map((extra) => (
+              {['Windows', 'Fridge', 'Oven', 'Cabinets'].map((extra) => (
                 <Toggle
                   key={extra}
                   pressed={extras.includes(extra)}
@@ -146,16 +157,58 @@ const PriceEstimator = () => {
               ))}
             </div>
           </div>
+        );
 
-          {/* Preço Final */}
+      case 5:
+        return (
           <div className="bg-berry-purple text-white p-6 rounded-lg">
             <div className="flex items-center justify-center gap-2">
               <DollarSign size={32} />
-              <span className="text-4xl font-bold">R$ {calculatePrice()}</span>
+              <span className="text-4xl font-bold">${calculatePrice()}</span>
             </div>
             <p className="text-center mt-2 text-sm opacity-90">
-              Valor estimado para limpeza única
+              Estimated price for one-time cleaning
             </p>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <section className="section-padding bg-white">
+      <div className="container mx-auto">
+        <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
+          Calculate Your Price
+        </h2>
+        
+        <div className="max-w-3xl mx-auto">
+          {renderStep()}
+          
+          <div className="flex justify-between mt-8">
+            <Button
+              variant="outline"
+              onClick={prevStep}
+              disabled={step === 1}
+              className="gap-2"
+            >
+              <ChevronLeft /> Previous
+            </Button>
+            <Button
+              onClick={nextStep}
+              disabled={step === 5}
+              className="gap-2"
+            >
+              Next <ChevronRight />
+            </Button>
+          </div>
+
+          <div className="mt-4 flex justify-center">
+            <span className="text-sm text-gray-500">
+              Step {step} of 5
+            </span>
           </div>
         </div>
       </div>
