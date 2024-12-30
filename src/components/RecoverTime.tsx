@@ -12,7 +12,7 @@ const RecoverTime = () => {
           <p className="text-gray-600 leading-relaxed">
             Busy, rushed, and overwhelmed? Free time is a luxury, and your endless to-do list leaves little room for what truly matters. Let us handle your household tasks so you can reclaim your time – whether it's spending more time with family, pursuing a hobby, focusing on your career... or simply slowing down your hectic pace.
           </p>
-          <div className="bg-white p-6 rounded-lg italic text-berry-purple">
+          <div className="bg-berry-lime/20 p-6 rounded-lg italic text-berry-purple">
             <p className="font-bauhaus text-xl">Relax. It's done.</p>
           </div>
           <div className="space-y-4">
