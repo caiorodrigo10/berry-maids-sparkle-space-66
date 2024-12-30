@@ -46,13 +46,13 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-berry-lime text-black font-semibold px-8 py-3 rounded-lg 
+    @apply bg-berry-lime !important text-black font-semibold px-8 py-3 rounded-lg 
            transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]
            active:translate-y-0 active:shadow-md;
   }
 
   .btn-header {
-    @apply bg-berry-purple text-white font-semibold px-8 py-3 rounded-lg 
+    @apply bg-berry-purple !important text-white font-semibold px-8 py-3 rounded-lg 
            transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]
            active:translate-y-0 active:shadow-md;
   }
