@@ -28,7 +28,7 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
         <p className="text-center text-gray-600">Select the level that best describes your space</p>
       </div>
       
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         {[1, 2, 3, 4, 5].map((level) => (
           <div key={level} className="flex flex-col items-center space-y-2">
             <button
