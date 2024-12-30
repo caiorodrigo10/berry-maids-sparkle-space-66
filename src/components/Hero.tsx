@@ -19,7 +19,7 @@ const Hero = () => {
         </h1>
         <div className="mb-12">
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Experience the ultimate in home cleaning services. Our professional team brings sparkle and shine to every corner of your home, letting you focus on what matters most.
+            Our professional team brings sparkle and shine to every corner of your home.
           </p>
         </div>
         <Button 
