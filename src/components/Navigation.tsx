@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +20,7 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const navHeight = 80; // Height of the navigation bar
+      const navHeight = 80;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navHeight;
 
@@ -25,8 +28,16 @@ const Navigation = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      setIsMobileMenuOpen(false);
     }
   };
+
+  const menuItems = [
+    { label: 'Services', id: 'services' },
+    { label: 'Areas', id: 'areas' },
+    { label: 'Team', id: 'team' },
+    { label: 'Contact', id: 'contact' },
+  ];
 
   return (
     <div className={cn(
@@ -38,42 +49,41 @@ const Navigation = () => {
           <img src="/images/placeholder-logo.png" alt="Berry Maids Logo" className="h-12 w-auto" />
         </div>
         
-        <NavigationMenu>
+        {/* Desktop Navigation */}
+        <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
-                onClick={() => scrollToSection('services')}
-              >
-                Services
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
-                onClick={() => scrollToSection('areas')}
-              >
-                Areas
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
-                onClick={() => scrollToSection('team')}
-              >
-                Team
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
-                onClick={() => scrollToSection('contact')}
-              >
-                Contact
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            {menuItems.map((item) => (
+              <NavigationMenuItem key={item.id}>
+                <NavigationMenuLink 
+                  className="text-berry-white hover:text-berry-lime px-4 cursor-pointer" 
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.label}
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
+
+        {/* Mobile Navigation */}
+        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <SheetTrigger className="md:hidden p-2">
+            <Menu className="h-6 w-6 text-berry-white" />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] bg-black/95 border-berry-purple">
+            <nav className="flex flex-col gap-4 mt-8">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-berry-white hover:text-berry-lime text-lg py-2 text-left transition-colors duration-200"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   );
