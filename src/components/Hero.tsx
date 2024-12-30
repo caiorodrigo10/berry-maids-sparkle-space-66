@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import Navigation from './Navigation';
 
 const Hero = () => {
   return (
@@ -7,6 +8,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070')] bg-cover bg-center opacity-50" 
       />
+      <Navigation />
       <div className="relative z-10 container mx-auto text-center px-4">
         <div className="animate-float mb-8">
           <img src="/images/logo.png" alt="Berry Maids Logo" className="mx-auto h-32 w-auto" />
