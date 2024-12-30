@@ -16,8 +16,8 @@ const Navigation = () => {
 
   return (
     <div className={cn(
-      "w-full py-4 transition-all duration-300 z-50",
-      isSticky ? "fixed top-0 bg-black/90 shadow-lg" : "absolute"
+      "w-full py-4 transition-all duration-300 z-50 absolute top-0 left-0",
+      isSticky ? "fixed bg-black/90 shadow-lg" : ""
     )}>
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center">
