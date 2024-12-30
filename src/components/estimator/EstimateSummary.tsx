@@ -113,7 +113,7 @@ const EstimateSummary = ({
             <Home className="text-berry-purple" />
             <span className="font-medium">Cleanliness Level</span>
           </div>
-          <div className="flex justify-between gap-2 px-2">
+          <div className="flex justify-center gap-4 px-2">
             {[1, 2, 3, 4, 5].map((level) => (
               <div key={level} className="flex flex-col items-center space-y-2">
                 <button
