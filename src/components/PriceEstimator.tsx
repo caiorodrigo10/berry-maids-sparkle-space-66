@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import EstimateDisclaimer from './estimator/EstimateDisclaimer';
+import LocationStep from './estimator/LocationStep';
 import HouseSizeStep from './estimator/HouseSizeStep';
 import RoomsStep from './estimator/RoomsStep';
 import CleanlinessStep from './estimator/CleanlinessStep';
@@ -28,7 +30,7 @@ const PriceEstimator = () => {
   };
 
   const nextStep = () => {
-    if (step < 5) setStep(step + 1);
+    if (step < 6) setStep(step + 1);
   };
 
   const prevStep = () => {
@@ -38,8 +40,10 @@ const PriceEstimator = () => {
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <HouseSizeStep size={size} setSize={setSize} />;
+        return <LocationStep />;
       case 2:
+        return <HouseSizeStep size={size} setSize={setSize} />;
+      case 3:
         return (
           <RoomsStep
             bedrooms={bedrooms}
@@ -48,11 +52,11 @@ const PriceEstimator = () => {
             setBathrooms={setBathrooms}
           />
         );
-      case 3:
-        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 4:
-        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 5:
+        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+      case 6:
         return <PriceDisplay price={calculatePrice()} />;
       default:
         return null;
@@ -60,22 +64,26 @@ const PriceEstimator = () => {
   };
 
   return (
-    <section className="section-padding bg-white">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
-          Calculate Your Price
-        </h2>
-        
-        <div className="max-w-3xl mx-auto">
-          {renderStep()}
-          <StepNavigation
-            step={step}
-            prevStep={prevStep}
-            nextStep={nextStep}
-          />
+    <>
+      <EstimateDisclaimer />
+      
+      <section id="price-estimator" className="section-padding bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
+            Calculate Your Price
+          </h2>
+          
+          <div className="max-w-3xl mx-auto">
+            {renderStep()}
+            <StepNavigation
+              step={step}
+              prevStep={prevStep}
+              nextStep={nextStep}
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
