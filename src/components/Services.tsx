@@ -31,7 +31,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-[#F2FCE2]">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
           Our Services
@@ -40,7 +40,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="p-6 rounded-lg border border-gray-100 hover:border-berry-purple 
+              className="p-6 rounded-lg bg-white border border-gray-100 hover:border-berry-purple 
                          transition-all duration-300 hover:shadow-lg group"
             >
               <service.icon 

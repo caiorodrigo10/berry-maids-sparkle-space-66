@@ -27,7 +27,7 @@ const transformations = [
 
 const BeforeAfter = () => {
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-[#D3E4FD]">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
           Before & After Gallery
