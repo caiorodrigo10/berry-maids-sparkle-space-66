@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bed, Bath, Home, Plus, Minus, DollarSign, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Bed, Bath, Home, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
 import { Toggle } from "@/components/ui/toggle";
 import { Button } from "@/components/ui/button";
@@ -163,7 +163,6 @@ const PriceEstimator = () => {
         return (
           <div className="bg-berry-purple text-white p-6 rounded-lg">
             <div className="flex items-center justify-center gap-2">
-              <DollarSign size={32} />
               <span className="text-4xl font-bold">${calculatePrice()}</span>
             </div>
             <p className="text-center mt-2 text-sm opacity-90">
