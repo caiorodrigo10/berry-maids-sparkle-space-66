@@ -8,7 +8,7 @@ const LocationStep = () => {
   const [zipCode, setZipCode] = useState('');
 
   return (
-    <Card className="py-6">
+    <Card className="py-6 px-2">
       <div className="space-y-6">
         <div className="flex items-center gap-3 text-berry-purple">
           <MapPin className="w-6 h-6" />
