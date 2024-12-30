@@ -1,3 +1,5 @@
+import { Home } from 'lucide-react';
+
 interface CleanlinessStepProps {
   cleanLevel: number;
   setCleanLevel: (level: number) => void;
@@ -17,9 +19,9 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
 
   return (
     <div className="space-y-8">
-      <div className="space-y-4">
-        <h3 className="text-2xl md:text-3xl font-semibold text-center text-berry-purple uppercase font-bauhaus">How dirty is it?</h3>
-        <p className="text-center text-gray-600 text-lg">Select the level that best describes your space</p>
+      <div className="flex items-center justify-center gap-2">
+        <Home className="text-berry-purple" />
+        <h3 className="text-xl font-semibold">How dirty is it?</h3>
       </div>
       
       <div className="flex justify-between gap-2 px-2">

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MapPin } from "lucide-react";
+import { MapPin, Home } from "lucide-react";
 
 const LocationStep = () => {
   const [zipCode, setZipCode] = useState('');
@@ -10,9 +10,9 @@ const LocationStep = () => {
   return (
     <Card className="py-6 px-2">
       <div className="space-y-6">
-        <div className="flex items-center gap-3 text-berry-purple">
-          <MapPin className="w-6 h-6" />
-          <h3 className="text-2xl md:text-3xl font-bauhaus">Your Location</h3>
+        <div className="flex items-center justify-center gap-2">
+          <MapPin className="text-berry-purple" />
+          <h3 className="text-xl font-semibold">Your Location</h3>
         </div>
 
         <div className="space-y-4">
