@@ -7,9 +7,9 @@ const CleanlinessStep = ({ cleanLevel, setCleanLevel }: CleanlinessStepProps) =>
   const getLevelDescription = (level: number) => {
     switch (level) {
       case 1:
-        return "Leve - Pouca sujeira";
+        return "Light";
       case 5:
-        return "Pesado - Muita sujeira";
+        return "Heavy";
       default:
         return "";
     }
