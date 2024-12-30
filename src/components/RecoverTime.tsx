@@ -26,8 +26,8 @@ const RecoverTime = () => {
         </div>
         <div className="rounded-lg overflow-hidden shadow-xl">
           <img 
-            src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=2074" 
-            alt="Professional cleaning service at work" 
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070" 
+            alt="Clean and organized modern home interior" 
             className="w-full h-full object-cover"
           />
         </div>
