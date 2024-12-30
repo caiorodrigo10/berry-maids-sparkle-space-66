@@ -21,7 +21,7 @@ const areas = [
 
 const ServiceAreas = () => {
   return (
-    <section className="section-padding bg-[#E5DEFF]">
+    <section className="section-padding bg-white">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-12 text-berry-purple">
           Service Areas
