@@ -6,6 +6,7 @@ import CleanlinessStep from './estimator/CleanlinessStep';
 import ExtrasStep from './estimator/ExtrasStep';
 import PriceDisplay from './estimator/PriceDisplay';
 import StepNavigation from './estimator/StepNavigation';
+import DisclaimerStep from './estimator/DisclaimerStep';
 
 const PriceEstimator = () => {
   const [step, setStep] = useState(1);
@@ -52,7 +53,7 @@ const PriceEstimator = () => {
   };
 
   const nextStep = () => {
-    if (step < 6) setStep(step + 1);
+    if (step < 7) setStep(step + 1);
   };
 
   const prevStep = () => {
@@ -62,10 +63,12 @@ const PriceEstimator = () => {
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <LocationStep />;
+        return <DisclaimerStep />;
       case 2:
-        return <HouseSizeStep size={size} setSize={setSize} />;
+        return <LocationStep />;
       case 3:
+        return <HouseSizeStep size={size} setSize={setSize} />;
+      case 4:
         return (
           <RoomsStep
             bedrooms={bedrooms}
@@ -74,11 +77,11 @@ const PriceEstimator = () => {
             setBathrooms={setBathrooms}
           />
         );
-      case 4:
-        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 5:
-        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 6:
+        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+      case 7:
         return <PriceDisplay price={calculatePrice()} />;
       default:
         return null;
