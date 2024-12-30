@@ -36,8 +36,8 @@ const LiveMore = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-lg overflow-hidden shadow-xl">
             <img 
-              src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=2070" 
-              alt="Serene ocean waves representing peace of mind" 
+              src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2074" 
+              alt="Clean and organized modern living room" 
               className="w-full h-full object-cover"
             />
           </div>
