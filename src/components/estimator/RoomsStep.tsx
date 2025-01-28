@@ -5,18 +5,47 @@ interface RoomsStepProps {
   setBedrooms: (value: number) => void;
   bathrooms: number;
   setBathrooms: (value: number) => void;
+  kitchens: number;
+  setKitchens: (value: number) => void;
+  livingRooms: number;
+  setLivingRooms: (value: number) => void;
+  entertainmentRooms: number;
+  setEntertainmentRooms: (value: number) => void;
+  offices: number;
+  setOffices: (value: number) => void;
+  diningRooms: number;
+  setDiningRooms: (value: number) => void;
+  laundryRooms: number;
+  setLaundryRooms: (value: number) => void;
 }
 
-const RoomsStep = ({ bedrooms, setBedrooms, bathrooms, setBathrooms }: RoomsStepProps) => {
+const RoomsStep = ({ 
+  bedrooms, 
+  setBedrooms, 
+  bathrooms, 
+  setBathrooms,
+  kitchens,
+  setKitchens,
+  livingRooms,
+  setLivingRooms,
+  entertainmentRooms,
+  setEntertainmentRooms,
+  offices,
+  setOffices,
+  diningRooms,
+  setDiningRooms,
+  laundryRooms,
+  setLaundryRooms
+}: RoomsStepProps) => {
   const rooms = [
     { label: "How many bedrooms?", value: bedrooms, setValue: setBedrooms },
     { label: "How many bathrooms?", value: bathrooms, setValue: setBathrooms },
-    { label: "How many kitchens?", value: bedrooms, setValue: setBedrooms },
-    { label: "How many living rooms?", value: bathrooms, setValue: setBathrooms },
-    { label: "How many entertainment rooms?", value: bedrooms, setValue: setBedrooms },
-    { label: "How many home offices?", value: bathrooms, setValue: setBathrooms },
-    { label: "How many dining rooms?", value: bedrooms, setValue: setBedrooms },
-    { label: "How many laundry rooms?", value: bathrooms, setValue: setBathrooms },
+    { label: "How many kitchens?", value: kitchens, setValue: setKitchens },
+    { label: "How many living rooms?", value: livingRooms, setValue: setLivingRooms },
+    { label: "How many entertainment rooms?", value: entertainmentRooms, setValue: setEntertainmentRooms },
+    { label: "How many home offices?", value: offices, setValue: setOffices },
+    { label: "How many dining rooms?", value: diningRooms, setValue: setDiningRooms },
+    { label: "How many laundry rooms?", value: laundryRooms, setValue: setLaundryRooms },
   ];
 
   return (
