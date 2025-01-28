@@ -10,7 +10,7 @@ import StepNavigation from './estimator/StepNavigation';
 
 const PriceEstimator = () => {
   const [step, setStep] = useState(1);
-  const [size, setSize] = useState([100]);
+  const [size, setSize] = useState([1500]); // Changed default size to 1500 sq ft
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
   const [cleanLevel, setCleanLevel] = useState(3);
@@ -43,7 +43,7 @@ const PriceEstimator = () => {
   }, []);
 
   const calculatePrice = () => {
-    let basePrice = size[0] * 0.5;
+    let basePrice = size[0] * 0.15; // Adjusted price per square foot
     basePrice += bedrooms * 50;
     basePrice += bathrooms * 70;
     basePrice *= cleanLevel * 0.2 + 1;

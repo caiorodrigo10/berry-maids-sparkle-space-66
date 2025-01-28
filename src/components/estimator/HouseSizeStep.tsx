@@ -17,11 +17,17 @@ const HouseSizeStep = ({ size, setSize }: HouseSizeStepProps) => {
         <Slider
           value={size}
           onValueChange={setSize}
-          max={300}
-          step={10}
+          max={5000}
+          min={500}
+          step={100}
           className="w-full"
         />
         <p className="text-center mt-2">{size[0]} sq ft</p>
+        <div className="flex justify-between text-sm text-gray-500 mt-1">
+          <span>Small</span>
+          <span>Average</span>
+          <span>Large</span>
+        </div>
       </div>
     </div>
   );
