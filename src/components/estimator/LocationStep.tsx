@@ -28,16 +28,6 @@ const LocationStep = () => {
               maxLength={5}
             />
           </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <div className="aspect-[16/9] rounded-lg overflow-hidden">
-              <img 
-                src="/lovable-uploads/efdd7117-73e9-4c8f-adac-0454095b5d7e.png" 
-                alt="Florida Mall area map" 
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </Card>
