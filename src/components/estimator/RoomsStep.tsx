@@ -49,12 +49,12 @@ const RoomsStep = ({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {rooms.map((room, index) => (
-        <div key={index} className="space-y-2">
+        <div key={index} className="space-y-2 p-4 bg-white rounded-lg shadow-sm">
           <div className="flex items-center justify-center gap-2">
             <Home className="text-berry-purple" />
-            <h3 className="text-xl font-semibold">{room.label}</h3>
+            <h3 className="text-lg font-semibold">{room.label}</h3>
           </div>
           <div className="flex items-center justify-center gap-4">
             <button
