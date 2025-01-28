@@ -9,8 +9,6 @@ interface EstimateSummaryProps {
   setBedrooms: (value: number) => void;
   bathrooms: number;
   setBathrooms: (value: number) => void;
-  cleanLevel: number;
-  setCleanLevel: (value: number) => void;
   extras: string[];
   setExtras: (extras: string[]) => void;
 }
@@ -22,8 +20,6 @@ const EstimateSummary = ({
   setBedrooms,
   bathrooms,
   setBathrooms,
-  cleanLevel,
-  setCleanLevel,
   extras,
   setExtras,
 }: EstimateSummaryProps) => {
@@ -105,35 +101,6 @@ const EstimateSummary = ({
             >
               <Plus size={20} />
             </button>
-          </div>
-        </div>
-
-        {/* Cleanliness Level */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-center gap-2">
-            <Home className="text-berry-purple" />
-            <span className="font-medium">Cleanliness Level</span>
-          </div>
-          <div className="flex justify-center gap-4 px-2">
-            {[1, 2, 3, 4, 5].map((level) => (
-              <div key={level} className="flex flex-col items-center space-y-2">
-                <button
-                  onClick={() => setCleanLevel(level)}
-                  className={`w-[48px] h-[48px] rounded-lg border-2 transition-all text-xl font-semibold uppercase
-                    ${cleanLevel === level 
-                      ? 'border-berry-purple bg-berry-purple text-white' 
-                      : 'border-gray-200 hover:border-berry-purple text-gray-700'
-                    }`}
-                >
-                  {level}
-                </button>
-                {(level === 1 || level === 5) && (
-                  <p className="text-xs text-center text-gray-600">
-                    {level === 1 ? 'Light' : 'Heavy'}
-                  </p>
-                )}
-              </div>
-            ))}
           </div>
         </div>
 
