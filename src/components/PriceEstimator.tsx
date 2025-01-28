@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LocationStep from './estimator/LocationStep';
+import ServiceTypeStep from './estimator/ServiceTypeStep';
 import HouseSizeStep from './estimator/HouseSizeStep';
 import RoomsStep from './estimator/RoomsStep';
 import CleanlinessStep from './estimator/CleanlinessStep';
@@ -10,7 +11,8 @@ import StepNavigation from './estimator/StepNavigation';
 
 const PriceEstimator = () => {
   const [step, setStep] = useState(1);
-  const [size, setSize] = useState([1500]); // Changed default size to 1500 sq ft
+  const [selectedService, setSelectedService] = useState('standard');
+  const [size, setSize] = useState([1500]);
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
   const [cleanLevel, setCleanLevel] = useState(3);
@@ -43,7 +45,23 @@ const PriceEstimator = () => {
   }, []);
 
   const calculatePrice = () => {
-    let basePrice = size[0] * 0.15; // Adjusted price per square foot
+    let basePrice = size[0] * 0.15;
+    
+    // Apply service type multiplier
+    switch (selectedService) {
+      case 'deep':
+        basePrice *= 1.5;
+        break;
+      case 'movein':
+        basePrice *= 1.75;
+        break;
+      case 'office':
+        basePrice *= 1.25;
+        break;
+      default: // standard
+        break;
+    }
+    
     basePrice += bedrooms * 50;
     basePrice += bathrooms * 70;
     basePrice *= cleanLevel * 0.2 + 1;
@@ -56,7 +74,7 @@ const PriceEstimator = () => {
   };
 
   const nextStep = () => {
-    if (step < 7) setStep(step + 1);
+    if (step < 8) setStep(step + 1);
   };
 
   const prevStep = () => {
@@ -68,8 +86,14 @@ const PriceEstimator = () => {
       case 1:
         return <LocationStep />;
       case 2:
-        return <HouseSizeStep size={size} setSize={setSize} />;
+        return <ServiceTypeStep 
+          selectedService={selectedService} 
+          setSelectedService={setSelectedService}
+          nextStep={nextStep}
+        />;
       case 3:
+        return <HouseSizeStep size={size} setSize={setSize} />;
+      case 4:
         return (
           <RoomsStep
             bedrooms={bedrooms}
@@ -78,11 +102,11 @@ const PriceEstimator = () => {
             setBathrooms={setBathrooms}
           />
         );
-      case 4:
-        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 5:
-        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
       case 6:
+        return <ExtrasStep extras={extras} setExtras={setExtras} />;
+      case 7:
         return (
           <ContactInfoStep
             name={name}
@@ -93,7 +117,7 @@ const PriceEstimator = () => {
             setPhone={setPhone}
           />
         );
-      case 7:
+      case 8:
         return (
           <PriceDisplay
             price={calculatePrice()}
