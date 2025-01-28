@@ -13,8 +13,14 @@ const PriceEstimator = () => {
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState('standard');
   const [size, setSize] = useState([1500]);
-  const [bedrooms, setBedrooms] = useState(2);
-  const [bathrooms, setBathrooms] = useState(1);
+  const [bedrooms, setBedrooms] = useState(0);
+  const [bathrooms, setBathrooms] = useState(0);
+  const [kitchens, setKitchens] = useState(0);
+  const [livingRooms, setLivingRooms] = useState(0);
+  const [entertainmentRooms, setEntertainmentRooms] = useState(0);
+  const [offices, setOffices] = useState(0);
+  const [diningRooms, setDiningRooms] = useState(0);
+  const [laundryRooms, setLaundryRooms] = useState(0);
   const [cleanLevel, setCleanLevel] = useState(3);
   const [extras, setExtras] = useState<string[]>([]);
   const [name, setName] = useState('');
@@ -47,7 +53,6 @@ const PriceEstimator = () => {
   const calculatePrice = () => {
     let basePrice = size[0] * 0.15;
     
-    // Apply service type multiplier
     switch (selectedService) {
       case 'deep':
         basePrice *= 1.5;
@@ -58,12 +63,20 @@ const PriceEstimator = () => {
       case 'office':
         basePrice *= 1.25;
         break;
-      default: // standard
+      default:
         break;
     }
     
+    // Add price for each room type
     basePrice += bedrooms * 50;
     basePrice += bathrooms * 70;
+    basePrice += kitchens * 80;
+    basePrice += livingRooms * 60;
+    basePrice += entertainmentRooms * 60;
+    basePrice += offices * 50;
+    basePrice += diningRooms * 50;
+    basePrice += laundryRooms * 40;
+    
     basePrice *= cleanLevel * 0.2 + 1;
     
     extras.forEach(extra => {
@@ -100,6 +113,18 @@ const PriceEstimator = () => {
             setBedrooms={setBedrooms}
             bathrooms={bathrooms}
             setBathrooms={setBathrooms}
+            kitchens={kitchens}
+            setKitchens={setKitchens}
+            livingRooms={livingRooms}
+            setLivingRooms={setLivingRooms}
+            entertainmentRooms={entertainmentRooms}
+            setEntertainmentRooms={setEntertainmentRooms}
+            offices={offices}
+            setOffices={setOffices}
+            diningRooms={diningRooms}
+            setDiningRooms={setDiningRooms}
+            laundryRooms={laundryRooms}
+            setLaundryRooms={setLaundryRooms}
           />
         );
       case 5:
