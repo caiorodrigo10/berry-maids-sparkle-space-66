@@ -8,8 +8,6 @@ interface PriceDisplayProps {
   setBedrooms: (value: number) => void;
   bathrooms: number;
   setBathrooms: (value: number) => void;
-  cleanLevel: number;
-  setCleanLevel: (value: number) => void;
   extras: string[];
   setExtras: (extras: string[]) => void;
 }
@@ -22,8 +20,6 @@ const PriceDisplay = ({
   setBedrooms,
   bathrooms,
   setBathrooms,
-  cleanLevel,
-  setCleanLevel,
   extras,
   setExtras,
 }: PriceDisplayProps) => {
@@ -48,8 +44,6 @@ const PriceDisplay = ({
         setBedrooms={setBedrooms}
         bathrooms={bathrooms}
         setBathrooms={setBathrooms}
-        cleanLevel={cleanLevel}
-        setCleanLevel={setCleanLevel}
         extras={extras}
         setExtras={setExtras}
       />
