@@ -24,7 +24,7 @@ export default {
       },
       colors: {
         berry: {
-          purple: "#864AAA",
+          purple: "#D3E4FD", // Changed from #864AAA to baby blue
           lime: "#C1FF52",
           white: "#FEFEFE",
         },
