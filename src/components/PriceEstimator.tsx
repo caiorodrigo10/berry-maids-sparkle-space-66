@@ -3,7 +3,6 @@ import LocationStep from './estimator/LocationStep';
 import ServiceTypeStep from './estimator/ServiceTypeStep';
 import HouseSizeStep from './estimator/HouseSizeStep';
 import RoomsStep from './estimator/RoomsStep';
-import CleanlinessStep from './estimator/CleanlinessStep';
 import ExtrasStep from './estimator/ExtrasStep';
 import ContactInfoStep from './estimator/ContactInfoStep';
 import PriceDisplay from './estimator/PriceDisplay';
@@ -21,7 +20,6 @@ const PriceEstimator = () => {
   const [offices, setOffices] = useState(0);
   const [diningRooms, setDiningRooms] = useState(0);
   const [laundryRooms, setLaundryRooms] = useState(0);
-  const [cleanLevel, setCleanLevel] = useState(3);
   const [extras, setExtras] = useState<string[]>([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -77,8 +75,6 @@ const PriceEstimator = () => {
     basePrice += diningRooms * 50;
     basePrice += laundryRooms * 40;
     
-    basePrice *= cleanLevel * 0.2 + 1;
-    
     extras.forEach(extra => {
       basePrice += 30;
     });
@@ -87,7 +83,7 @@ const PriceEstimator = () => {
   };
 
   const nextStep = () => {
-    if (step < 8) setStep(step + 1);
+    if (step < 7) setStep(step + 1);
   };
 
   const prevStep = () => {
@@ -128,10 +124,8 @@ const PriceEstimator = () => {
           />
         );
       case 5:
-        return <CleanlinessStep cleanLevel={cleanLevel} setCleanLevel={setCleanLevel} />;
-      case 6:
         return <ExtrasStep extras={extras} setExtras={setExtras} />;
-      case 7:
+      case 6:
         return (
           <ContactInfoStep
             name={name}
@@ -142,7 +136,7 @@ const PriceEstimator = () => {
             setPhone={setPhone}
           />
         );
-      case 8:
+      case 7:
         return (
           <PriceDisplay
             price={calculatePrice()}
@@ -152,8 +146,6 @@ const PriceEstimator = () => {
             setBedrooms={setBedrooms}
             bathrooms={bathrooms}
             setBathrooms={setBathrooms}
-            cleanLevel={cleanLevel}
-            setCleanLevel={setCleanLevel}
             extras={extras}
             setExtras={setExtras}
           />
