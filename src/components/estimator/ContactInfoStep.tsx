@@ -22,7 +22,7 @@ interface ContactInfoStepProps {
   diningRooms: number;
   laundryRooms: number;
   extras: string[];
-  calculatePrice?: () => string; // Adicionando a função de cálculo de preço
+  calculatePrice?: () => string;
 }
 
 const ContactInfoStep = ({
@@ -84,11 +84,33 @@ const ContactInfoStep = ({
 
     const estimatedPrice = calculatePrice ? calculatePrice() : '0';
 
+    // Get ZIP code from input
+    const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
+    const zipCode = zipCodeInput ? zipCodeInput.value : '';
+
+    // Initialize additionalServices with all possible services set to 0
+    const defaultAdditionalServices = {
+      extra_room: 0,
+      internal_windows: 0,
+      oven_inside: 0,
+      fridge_inside: 0,
+      pantry_inside: 0,
+      cabinets_inside: 0,
+      has_pets: 0
+    };
+
+    // Count occurrences of each service in extras array
+    const additionalServices = extras.reduce((acc, extra) => ({
+      ...acc,
+      [extra]: (acc[extra as keyof typeof acc] || 0) + 1
+    }), defaultAdditionalServices);
+
     const webhookData = {
       contact: {
         name,
         email,
         phone,
+        zipCode // Adding ZIP code to the contact information
       },
       service: {
         type: selectedService,
@@ -105,12 +127,9 @@ const ContactInfoStep = ({
           },
           squareFootage: size[0],
         },
-        estimatedPrice: parseFloat(estimatedPrice), // Adicionando o preço estimado
+        estimatedPrice: parseFloat(estimatedPrice),
       },
-      additionalServices: extras.reduce((acc, extra) => ({
-        ...acc,
-        [extra]: 1,
-      }), {}),
+      additionalServices, // Now includes all services with 0 for unused ones
     };
 
     console.log('Webhook payload:', JSON.stringify(webhookData, null, 2));
