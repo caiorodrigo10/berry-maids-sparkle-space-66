@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ContactInfoStepProps {
   name: string;
@@ -42,18 +43,17 @@ const ContactInfoStep = ({
   laundryRooms,
   extras,
 }: ContactInfoStepProps) => {
+  const { toast } = useToast();
   const [errors, setErrors] = useState({
     name: '',
     email: '',
     phone: ''
   });
 
-  // Função para validar email
   const isValidEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  // Função para validar telefone (formato básico)
   const isValidPhone = (phone: string) => {
     return phone.replace(/\D/g, '').length >= 10;
   };
@@ -68,7 +68,6 @@ const ContactInfoStep = ({
     return !Object.values(newErrors).some(error => error);
   };
 
-  // Função para enviar dados para o webhook
   const sendToWebhook = async () => {
     if (!validateFields()) {
       return;
@@ -102,21 +101,36 @@ const ContactInfoStep = ({
       }), {}),
     };
 
+    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(
+      'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc'
+    );
+
     try {
-      await fetch(
-        'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(webhookData),
-          mode: 'no-cors'
-        }
-      );
+      const response = await fetch(proxyUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      toast({
+        title: "Success!",
+        description: "Your information has been submitted successfully.",
+      });
+      
       console.log('Webhook sent successfully');
     } catch (error) {
       console.error('Error sending webhook:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "There was a problem submitting your information. Please try again later.",
+      });
     }
   };
 
