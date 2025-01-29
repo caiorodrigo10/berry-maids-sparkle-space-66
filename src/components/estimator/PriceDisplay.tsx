@@ -1,5 +1,3 @@
-import EstimateSummary from './EstimateSummary';
-
 interface PriceDisplayProps {
   price: string;
   size: number[];
@@ -14,39 +12,35 @@ interface PriceDisplayProps {
 
 const PriceDisplay = ({
   price,
-  size,
-  setSize,
-  bedrooms,
-  setBedrooms,
-  bathrooms,
-  setBathrooms,
-  extras,
-  setExtras,
 }: PriceDisplayProps) => {
   // Remove .00 from price if it exists
   const formattedPrice = price.replace('.00', '');
 
   return (
     <div className="space-y-8">
-      <div className="bg-[#F2FCE2] text-berry-purple p-6 rounded-lg">
-        <div className="flex items-center justify-center gap-2">
-          <span className="text-4xl font-bold">${formattedPrice}</span>
+      <div className="bg-[#F2FCE2] text-berry-purple p-8 rounded-lg shadow-lg">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <h3 className="text-2xl font-semibold">Estimated Price</h3>
+          <span className="text-6xl font-bold">${formattedPrice}</span>
+          <p className="text-center mt-2 text-sm opacity-90">
+            Estimated price for one-time cleaning
+          </p>
         </div>
-        <p className="text-center mt-2 text-sm opacity-90">
-          Estimated price for one-time cleaning
-        </p>
       </div>
 
-      <EstimateSummary
-        size={size}
-        setSize={setSize}
-        bedrooms={bedrooms}
-        setBedrooms={setBedrooms}
-        bathrooms={bathrooms}
-        setBathrooms={setBathrooms}
-        extras={extras}
-        setExtras={setExtras}
-      />
+      {/* Schedule Button */}
+      <div className="flex justify-center mt-8">
+        <button 
+          onClick={() => window.location.href = '#'} 
+          className="bg-berry-purple text-white px-12 py-4 rounded-lg font-semibold uppercase
+                   transform transition-all duration-300 hover:scale-105
+                   hover:shadow-lg hover:bg-berry-purple/90
+                   active:scale-95 active:shadow-md
+                   animate-float"
+        >
+          Schedule Now
+        </button>
+      </div>
     </div>
   );
 };
