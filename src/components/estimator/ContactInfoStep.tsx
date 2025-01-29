@@ -22,6 +22,7 @@ interface ContactInfoStepProps {
   diningRooms: number;
   laundryRooms: number;
   extras: string[];
+  calculatePrice?: () => string; // Adicionando a função de cálculo de preço
 }
 
 const ContactInfoStep = ({
@@ -42,6 +43,7 @@ const ContactInfoStep = ({
   diningRooms,
   laundryRooms,
   extras,
+  calculatePrice,
 }: ContactInfoStepProps) => {
   const { toast } = useToast();
   const [errors, setErrors] = useState({
@@ -80,6 +82,8 @@ const ContactInfoStep = ({
       return;
     }
 
+    const estimatedPrice = calculatePrice ? calculatePrice() : '0';
+
     const webhookData = {
       contact: {
         name,
@@ -101,6 +105,7 @@ const ContactInfoStep = ({
           },
           squareFootage: size[0],
         },
+        estimatedPrice: parseFloat(estimatedPrice), // Adicionando o preço estimado
       },
       additionalServices: extras.reduce((acc, extra) => ({
         ...acc,

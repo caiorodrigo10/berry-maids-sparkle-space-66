@@ -214,6 +214,7 @@ const PriceEstimator = () => {
             diningRooms={diningRooms}
             laundryRooms={laundryRooms}
             extras={extras}
+            calculatePrice={calculatePrice}
           />
         );
       case 7:
