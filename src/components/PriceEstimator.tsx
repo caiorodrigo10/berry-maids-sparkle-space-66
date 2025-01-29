@@ -124,8 +124,35 @@ const PriceEstimator = () => {
     return totalPrice.toFixed(2);
   };
 
+  const validateStep = () => {
+    switch (step) {
+      case 1:
+        return selectedService !== '';
+      case 2:
+        // ZIP code validation
+        const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
+        return zipCodeInput && zipCodeInput.value.length === 5;
+      case 6:
+        // Contact info validation
+        return (
+          name.trim() !== '' &&
+          email.trim() !== '' &&
+          phone.trim() !== '' &&
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+          phone.replace(/\D/g, '').length >= 10
+        );
+      default:
+        return true;
+    }
+  };
+
   const nextStep = () => {
-    if (step < 7) setStep(step + 1);
+    if (validateStep()) {
+      if (step < 7) setStep(step + 1);
+    } else {
+      // Se a validação falhar, não avança
+      console.log('Please fill in all required fields correctly before proceeding.');
+    }
   };
 
   const prevStep = () => {
@@ -141,7 +168,7 @@ const PriceEstimator = () => {
           nextStep={nextStep}
         />;
       case 2:
-        return <LocationStep />;
+        return <LocationStep nextStep={nextStep} prevStep={prevStep} />;
       case 3:
         return <HouseSizeStep size={size} setSize={setSize} />;
       case 4:

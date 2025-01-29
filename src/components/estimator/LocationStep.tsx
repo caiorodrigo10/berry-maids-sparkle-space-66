@@ -5,17 +5,31 @@ import { Label } from "@/components/ui/label";
 import { MapPin } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-const LocationStep = () => {
+interface LocationStepProps {
+  nextStep: () => void;
+  prevStep: () => void;
+}
+
+const LocationStep = ({ nextStep, prevStep }: LocationStepProps) => {
   const [zipCode, setZipCode] = useState('');
   const [error, setError] = useState('');
+  const [touched, setTouched] = useState(false);
 
   const handleZipCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '');
     setZipCode(value);
+    setTouched(true);
     
     if (value.length === 5) {
       setError('');
     } else {
+      setError('ZIP Code is required and must be 5 digits');
+    }
+  };
+
+  const handleBlur = () => {
+    setTouched(true);
+    if (zipCode.length !== 5) {
       setError('ZIP Code is required and must be 5 digits');
     }
   };
@@ -37,11 +51,12 @@ const LocationStep = () => {
               placeholder="Enter your ZIP code"
               value={zipCode}
               onChange={handleZipCodeChange}
+              onBlur={handleBlur}
               className="mt-1 h-[48px] text-lg"
               maxLength={5}
               required
             />
-            {error && (
+            {touched && error && (
               <Alert variant="destructive" className="mt-2">
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
