@@ -49,37 +49,79 @@ const PriceEstimator = () => {
   }, []);
 
   const calculatePrice = () => {
-    let basePrice = size[0] * 0.15;
+    // Base price calculation based on square footage
+    let basePrice = 0;
     
+    // Special calculation for office cleaning
+    if (selectedService === 'office') {
+      basePrice = Math.max(120, size[0] * 0.10); // Minimum $120 or $0.10 per sq ft
+    } else {
+      basePrice = size[0] * 0.15; // Standard rate $0.15 per sq ft
+    }
+    
+    // Apply service type multipliers
     switch (selectedService) {
       case 'deep':
-        basePrice *= 1.5;
+        basePrice *= 2.0; // 2x multiplier for deep cleaning
         break;
       case 'movein':
-        basePrice *= 1.75;
-        break;
-      case 'office':
-        basePrice *= 1.25;
+        basePrice *= 1.5; // 1.5x multiplier for move in/out
         break;
       default:
         break;
     }
     
-    // Add price for each room type
-    basePrice += bedrooms * 50;
-    basePrice += bathrooms * 70;
-    basePrice += kitchens * 80;
-    basePrice += livingRooms * 60;
-    basePrice += entertainmentRooms * 60;
-    basePrice += offices * 50;
-    basePrice += diningRooms * 50;
-    basePrice += laundryRooms * 40;
+    // Add fixed prices for each room type
+    let roomsPrice = 0;
+    roomsPrice += bedrooms * 15;           // $15 per bedroom
+    roomsPrice += bathrooms * 20;          // $20 per bathroom
+    roomsPrice += kitchens * 60;           // $60 per kitchen
+    roomsPrice += livingRooms * 15;        // $15 per living room
+    roomsPrice += entertainmentRooms * 15; // $15 per entertainment room
+    roomsPrice += offices * 15;            // $15 per office
+    roomsPrice += diningRooms * 15;        // $15 per dining room
+    roomsPrice += laundryRooms * 15;       // $15 per laundry room
     
-    extras.forEach(extra => {
-      basePrice += 30;
+    // Add prices for additional services
+    let extrasPrice = 0;
+    const extrasCounts = extras.reduce((acc: { [key: string]: number }, extra) => {
+      acc[extra] = (acc[extra] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Calculate prices for each extra service
+    Object.entries(extrasCounts).forEach(([service, quantity]) => {
+      switch (service) {
+        case 'extra_room':
+          extrasPrice += 15 * quantity; // $15 per extra room
+          break;
+        case 'internal_windows':
+          extrasPrice += 5 * quantity;  // $5 per internal window
+          break;
+        case 'oven_inside':
+          extrasPrice += 30 * quantity; // $30 per oven
+          break;
+        case 'fridge_inside':
+          extrasPrice += 35 * quantity; // $35 per fridge
+          break;
+        case 'pantry_inside':
+          extrasPrice += 35 * quantity; // $35 per pantry
+          break;
+        case 'cabinets_inside':
+          extrasPrice += 90 * quantity; // $90 for cabinets
+          break;
+        case 'has_pets':
+          extrasPrice += 10;            // Fixed $10 for pets
+          break;
+        default:
+          break;
+      }
     });
 
-    return basePrice.toFixed(2);
+    // Sum all components of the final price
+    const totalPrice = basePrice + roomsPrice + extrasPrice;
+    
+    return totalPrice.toFixed(2);
   };
 
   const nextStep = () => {
