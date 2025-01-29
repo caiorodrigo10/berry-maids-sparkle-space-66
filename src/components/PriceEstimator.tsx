@@ -134,6 +134,17 @@ const PriceEstimator = () => {
             setEmail={setEmail}
             phone={phone}
             setPhone={setPhone}
+            selectedService={selectedService}
+            size={size}
+            bedrooms={bedrooms}
+            bathrooms={bathrooms}
+            kitchens={kitchens}
+            livingRooms={livingRooms}
+            entertainmentRooms={entertainmentRooms}
+            offices={offices}
+            diningRooms={diningRooms}
+            laundryRooms={laundryRooms}
+            extras={extras}
           />
         );
       case 7:
