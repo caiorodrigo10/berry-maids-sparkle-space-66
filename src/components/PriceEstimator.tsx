@@ -93,13 +93,13 @@ const PriceEstimator = () => {
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <LocationStep />;
-      case 2:
         return <ServiceTypeStep 
           selectedService={selectedService} 
           setSelectedService={setSelectedService}
           nextStep={nextStep}
         />;
+      case 2:
+        return <LocationStep />;
       case 3:
         return <HouseSizeStep size={size} setSize={setSize} />;
       case 4:
