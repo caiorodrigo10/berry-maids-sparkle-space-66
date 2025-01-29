@@ -59,17 +59,24 @@ const ContactInfoStep = ({
   };
 
   const validateFields = () => {
+    console.log('Validating fields:', { name, email, phone });
+    
     const newErrors = {
       name: !name.trim() ? 'Name is required' : '',
       email: !email.trim() ? 'Email is required' : !isValidEmail(email) ? 'Invalid email format' : '',
       phone: !phone.trim() ? 'Phone is required' : !isValidPhone(phone) ? 'Phone must have at least 10 digits' : ''
     };
+    
+    console.log('Validation errors:', newErrors);
     setErrors(newErrors);
     return !Object.values(newErrors).some(error => error);
   };
 
   const sendToWebhook = async () => {
+    console.log('Starting webhook submission...');
+    
     if (!validateFields()) {
+      console.log('Validation failed, not sending webhook');
       return;
     }
 
@@ -101,31 +108,47 @@ const ContactInfoStep = ({
       }), {}),
     };
 
-    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(
-      'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc'
-    );
+    console.log('Webhook payload:', JSON.stringify(webhookData, null, 2));
+
+    const webhookUrl = 'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc';
 
     try {
-      const response = await fetch(proxyUrl, {
+      console.log('Sending request to webhook URL:', webhookUrl);
+      
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
+        mode: 'cors',
         body: JSON.stringify(webhookData),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+      
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const responseData = await response.json();
+      console.log('Webhook response:', responseData);
 
       toast({
         title: "Success!",
         description: "Your information has been submitted successfully.",
       });
       
-      console.log('Webhook sent successfully');
     } catch (error) {
       console.error('Error sending webhook:', error);
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+      
       toast({
         variant: "destructive",
         title: "Error",
@@ -135,7 +158,9 @@ const ContactInfoStep = ({
   };
 
   useEffect(() => {
+    console.log('Fields changed:', { name, email, phone });
     if (name && isValidEmail(email) && isValidPhone(phone)) {
+      console.log('All fields valid, sending webhook...');
       sendToWebhook();
     }
   }, [name, email, phone]);
