@@ -11,6 +11,8 @@ interface ContactInfoStepProps {
   setEmail: (email: string) => void;
   phone: string;
   setPhone: (phone: string) => void;
+  zipCode: string;
+  setZipCode: (zipCode: string) => void;
   selectedService: string;
   size: number[];
   bedrooms: number;
@@ -32,6 +34,8 @@ const ContactInfoStep = ({
   setEmail,
   phone,
   setPhone,
+  zipCode,
+  setZipCode,
   selectedService,
   size,
   bedrooms,
@@ -49,7 +53,8 @@ const ContactInfoStep = ({
   const [errors, setErrors] = useState({
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    zipCode: ''
   });
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -61,11 +66,16 @@ const ContactInfoStep = ({
     return phone.replace(/\D/g, '').length >= 10;
   };
 
+  const isValidZipCode = (zipCode: string) => {
+    return zipCode.length === 5;
+  };
+
   const validateFields = () => {
     const newErrors = {
       name: !name.trim() ? 'Name is required' : '',
       email: !email.trim() ? 'Email is required' : !isValidEmail(email) ? 'Invalid email format' : '',
-      phone: !phone.trim() ? 'Phone is required' : !isValidPhone(phone) ? 'Phone must have at least 10 digits' : ''
+      phone: !phone.trim() ? 'Phone is required' : !isValidPhone(phone) ? 'Phone must have at least 10 digits' : '',
+      zipCode: !zipCode.trim() ? 'ZIP Code is required' : !isValidZipCode(zipCode) ? 'ZIP Code must be 5 digits' : ''
     };
     
     setErrors(newErrors);
@@ -78,24 +88,6 @@ const ContactInfoStep = ({
     }
 
     const estimatedPrice = calculatePrice ? calculatePrice() : '0';
-
-    const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
-    const zipCode = zipCodeInput ? zipCodeInput.value : '';
-
-    const defaultAdditionalServices = {
-      extra_room: 0,
-      internal_windows: 0,
-      oven_inside: 0,
-      fridge_inside: 0,
-      pantry_inside: 0,
-      cabinets_inside: 0,
-      has_pets: 0
-    };
-
-    const additionalServices = extras.reduce((acc, extra) => ({
-      ...acc,
-      [extra]: (acc[extra as keyof typeof acc] || 0) + 1
-    }), defaultAdditionalServices);
 
     const webhookData = {
       contact: {
@@ -121,7 +113,15 @@ const ContactInfoStep = ({
         },
         estimatedPrice: parseFloat(estimatedPrice),
       },
-      additionalServices,
+      additionalServices: {
+        extra_room: extras.filter(e => e === 'extra_room').length,
+        internal_windows: extras.filter(e => e === 'internal_windows').length,
+        oven_inside: extras.filter(e => e === 'oven_inside').length,
+        fridge_inside: extras.filter(e => e === 'fridge_inside').length,
+        pantry_inside: extras.filter(e => e === 'pantry_inside').length,
+        cabinets_inside: extras.filter(e => e === 'cabinets_inside').length,
+        has_pets: extras.includes('has_pets') ? 1 : 0
+      },
     };
 
     const webhookUrl = 'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc';
@@ -161,10 +161,10 @@ const ContactInfoStep = ({
   };
 
   useEffect(() => {
-    if (name && isValidEmail(email) && isValidPhone(phone) && !hasSubmitted) {
+    if (name && isValidEmail(email) && isValidPhone(phone) && isValidZipCode(zipCode) && !hasSubmitted) {
       sendToWebhook();
     }
-  }, [name, email, phone]);
+  }, [name, email, phone, zipCode]);
 
   return (
     <div className="space-y-6">
@@ -215,6 +215,23 @@ const ContactInfoStep = ({
           {errors.phone && (
             <Alert variant="destructive">
               <AlertDescription>{errors.phone}</AlertDescription>
+            </Alert>
+          )}
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="zipCode">ZIP Code *</Label>
+          <Input
+            id="zipCode"
+            type="text"
+            placeholder="Enter your ZIP code"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+            maxLength={5}
+            required
+          />
+          {errors.zipCode && (
+            <Alert variant="destructive">
+              <AlertDescription>{errors.zipCode}</AlertDescription>
             </Alert>
           )}
         </div>
