@@ -30,8 +30,10 @@ const PriceDisplay = ({
 
       {/* Schedule Button */}
       <div className="flex justify-center mt-8">
-        <button 
-          onClick={() => window.location.href = '#'} 
+        <a 
+          href="https://www.sricleaningservice.com/widget/booking/q0XvGdLacsrIge6pkIY2" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-berry-purple text-white px-12 py-4 rounded-lg font-semibold uppercase
                    transform transition-all duration-300 hover:scale-105
                    hover:shadow-lg hover:bg-berry-purple/90
@@ -39,7 +41,7 @@ const PriceDisplay = ({
                    animate-float"
         >
           Schedule Now
-        </button>
+        </a>
       </div>
     </div>
   );
