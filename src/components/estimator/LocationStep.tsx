@@ -8,10 +8,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 interface LocationStepProps {
   nextStep: () => void;
   prevStep: () => void;
+  zipCode: string;
+  setZipCode: (zipCode: string) => void;
 }
 
-const LocationStep = ({ nextStep, prevStep }: LocationStepProps) => {
-  const [zipCode, setZipCode] = useState('');
+const LocationStep = ({ nextStep, prevStep, zipCode, setZipCode }: LocationStepProps) => {
   const [error, setError] = useState('');
   const [touched, setTouched] = useState(false);
 
