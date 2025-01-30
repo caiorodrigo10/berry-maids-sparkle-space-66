@@ -150,7 +150,10 @@ const PriceEstimator = () => {
   };
 
   const prevStep = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) {
+      setStep(step - 1);
+      // Removemos a lógica que zerava os extras aqui
+    }
   };
 
   const renderStep = () => {
