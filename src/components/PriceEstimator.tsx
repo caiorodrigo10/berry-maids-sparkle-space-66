@@ -24,7 +24,6 @@ const PriceEstimator = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [zipCode, setZipCode] = useState('');
   const [isVisible, setIsVisible] = useState(false);
 
   React.useEffect(() => {
@@ -123,7 +122,8 @@ const PriceEstimator = () => {
       case 1:
         return selectedService !== '';
       case 2:
-        return zipCode.length === 5;
+        const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
+        return zipCodeInput && zipCodeInput.value.length === 5;
       case 6:
         return (
           name.trim() !== '' &&
@@ -193,8 +193,6 @@ const PriceEstimator = () => {
             setEmail={setEmail}
             phone={phone}
             setPhone={setPhone}
-            zipCode={zipCode}
-            setZipCode={setZipCode}
             selectedService={selectedService}
             size={size}
             bedrooms={bedrooms}
