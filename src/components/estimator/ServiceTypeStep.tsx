@@ -24,7 +24,7 @@ const ServiceTypeStep = ({ selectedService, setSelectedService, nextStep }: Serv
           className="space-y-4"
         >
           <div className="flex items-center space-x-2 p-4 rounded-lg border hover:border-berry-purple transition-colors">
-            <RadioGroupItem value="standard" id="standard" />
+            <RadioGroupItem value="standard_house_cleaning" id="standard" />
             <Label htmlFor="standard" className="flex-1 cursor-pointer">
               <div className="font-semibold">Standard House Cleaning</div>
               <p className="text-sm text-gray-600">Regular maintenance cleaning including dusting, vacuuming, mopping, and basic bathroom/kitchen cleaning.</p>
@@ -32,7 +32,7 @@ const ServiceTypeStep = ({ selectedService, setSelectedService, nextStep }: Serv
           </div>
 
           <div className="flex items-center space-x-2 p-4 rounded-lg border hover:border-berry-purple transition-colors">
-            <RadioGroupItem value="deep" id="deep" />
+            <RadioGroupItem value="deep_house_cleaning" id="deep" />
             <Label htmlFor="deep" className="flex-1 cursor-pointer">
               <div className="font-semibold">Deep House Cleaning</div>
               <p className="text-sm text-gray-600">Thorough cleaning of all areas including behind furniture, inside cabinets, and detailed attention to buildup and grime.</p>
@@ -40,7 +40,7 @@ const ServiceTypeStep = ({ selectedService, setSelectedService, nextStep }: Serv
           </div>
 
           <div className="flex items-center space-x-2 p-4 rounded-lg border hover:border-berry-purple transition-colors">
-            <RadioGroupItem value="movein" id="movein" />
+            <RadioGroupItem value="move_in_out_cleaning" id="movein" />
             <Label htmlFor="movein" className="flex-1 cursor-pointer">
               <div className="font-semibold">Move In/Out Cleaning</div>
               <p className="text-sm text-gray-600">Complete cleaning service to prepare a property for new occupants or before moving out, including deep cleaning of all surfaces.</p>
@@ -48,7 +48,7 @@ const ServiceTypeStep = ({ selectedService, setSelectedService, nextStep }: Serv
           </div>
 
           <div className="flex items-center space-x-2 p-4 rounded-lg border hover:border-berry-purple transition-colors">
-            <RadioGroupItem value="office" id="office" />
+            <RadioGroupItem value="office_cleaning_service" id="office" />
             <Label htmlFor="office" className="flex-1 cursor-pointer">
               <div className="font-semibold">Office Cleaning</div>
               <p className="text-sm text-gray-600">Professional cleaning for commercial spaces including desks, common areas, and restrooms to maintain a healthy work environment.</p>

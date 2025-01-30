@@ -10,7 +10,7 @@ import StepNavigation from './estimator/StepNavigation';
 
 const PriceEstimator = () => {
   const [step, setStep] = useState(1);
-  const [selectedService, setSelectedService] = useState('standard');
+  const [selectedService, setSelectedService] = useState('standard_house_cleaning');
   const [size, setSize] = useState([1500]);
   const [bedrooms, setBedrooms] = useState(0);
   const [bathrooms, setBathrooms] = useState(0);
@@ -49,29 +49,25 @@ const PriceEstimator = () => {
   }, []);
 
   const calculatePrice = () => {
-    // Base price calculation based on square footage
     let basePrice = 0;
     
-    // Special calculation for office cleaning
-    if (selectedService === 'office') {
-      basePrice = Math.max(120, size[0] * 0.10); // Minimum $120 or $0.10 per sq ft
+    if (selectedService === 'office_cleaning_service') {
+      basePrice = Math.max(120, size[0] * 0.10);
     } else {
-      basePrice = size[0] * 0.15; // Standard rate $0.15 per sq ft
+      basePrice = size[0] * 0.15;
     }
     
-    // Apply service type multipliers
     switch (selectedService) {
-      case 'deep':
-        basePrice *= 2.0; // 2x multiplier for deep cleaning
+      case 'deep_house_cleaning':
+        basePrice *= 2.0;
         break;
-      case 'movein':
-        basePrice *= 1.5; // 1.5x multiplier for move in/out
+      case 'move_in_out_cleaning':
+        basePrice *= 1.5;
         break;
       default:
         break;
     }
     
-    // Add fixed prices for each room type
     let roomsPrice = 0;
     roomsPrice += bedrooms * 15;           // $15 per bedroom
     roomsPrice += bathrooms * 20;          // $20 per bathroom
@@ -82,14 +78,12 @@ const PriceEstimator = () => {
     roomsPrice += diningRooms * 15;        // $15 per dining room
     roomsPrice += laundryRooms * 15;       // $15 per laundry room
     
-    // Add prices for additional services
     let extrasPrice = 0;
     const extrasCounts = extras.reduce((acc: { [key: string]: number }, extra) => {
       acc[extra] = (acc[extra] || 0) + 1;
       return acc;
     }, {});
 
-    // Calculate prices for each extra service
     Object.entries(extrasCounts).forEach(([service, quantity]) => {
       switch (service) {
         case 'extra_room':
@@ -118,7 +112,6 @@ const PriceEstimator = () => {
       }
     });
 
-    // Sum all components of the final price
     const totalPrice = basePrice + roomsPrice + extrasPrice;
     
     return totalPrice.toFixed(2);
@@ -129,11 +122,9 @@ const PriceEstimator = () => {
       case 1:
         return selectedService !== '';
       case 2:
-        // ZIP code validation
         const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
         return zipCodeInput && zipCodeInput.value.length === 5;
       case 6:
-        // Contact info validation
         return (
           name.trim() !== '' &&
           email.trim() !== '' &&
@@ -150,7 +141,6 @@ const PriceEstimator = () => {
     if (validateStep()) {
       if (step < 7) setStep(step + 1);
     } else {
-      // Se a validação falhar, não avança
       console.log('Please fill in all required fields correctly before proceeding.');
     }
   };
