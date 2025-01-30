@@ -11,6 +11,7 @@ interface ContactInfoStepProps {
   setEmail: (email: string) => void;
   phone: string;
   setPhone: (phone: string) => void;
+  zipCode: string;
   selectedService: string;
   size: number[];
   bedrooms: number;
@@ -32,6 +33,7 @@ const ContactInfoStep = ({
   setEmail,
   phone,
   setPhone,
+  zipCode,
   selectedService,
   size,
   bedrooms,
@@ -79,24 +81,6 @@ const ContactInfoStep = ({
 
     const estimatedPrice = calculatePrice ? calculatePrice() : '0';
 
-    const zipCodeInput = document.getElementById('zipCode') as HTMLInputElement;
-    const zipCode = zipCodeInput ? zipCodeInput.value : '';
-
-    const defaultAdditionalServices = {
-      extra_room: 0,
-      internal_windows: 0,
-      oven_inside: 0,
-      fridge_inside: 0,
-      pantry_inside: 0,
-      cabinets_inside: 0,
-      has_pets: 0
-    };
-
-    const additionalServices = extras.reduce((acc, extra) => ({
-      ...acc,
-      [extra]: (acc[extra as keyof typeof acc] || 0) + 1
-    }), defaultAdditionalServices);
-
     const webhookData = {
       contact: {
         name,
@@ -121,7 +105,7 @@ const ContactInfoStep = ({
         },
         estimatedPrice: parseFloat(estimatedPrice),
       },
-      additionalServices,
+      additionalServices: extras,
     };
 
     const webhookUrl = 'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc';
