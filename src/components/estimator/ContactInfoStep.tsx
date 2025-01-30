@@ -74,6 +74,23 @@ const ContactInfoStep = ({
     return !Object.values(newErrors).some(error => error);
   };
 
+  const formatAdditionalServices = (extras: string[]) => {
+    const defaultServices = {
+      extra_room: 0,
+      internal_windows: 0,
+      oven_inside: 0,
+      fridge_inside: 0,
+      pantry_inside: 0,
+      cabinets_inside: 0,
+      has_pets: 0
+    };
+
+    return extras.reduce((acc, service) => ({
+      ...acc,
+      [service]: (acc[service as keyof typeof defaultServices] || 0) + 1
+    }), defaultServices);
+  };
+
   const sendToWebhook = async () => {
     if (!validateFields() || hasSubmitted) {
       return;
@@ -105,7 +122,7 @@ const ContactInfoStep = ({
         },
         estimatedPrice: parseFloat(estimatedPrice),
       },
-      additionalServices: extras,
+      additionalServices: formatAdditionalServices(extras),
     };
 
     const webhookUrl = 'https://services.leadconnectorhq.com/hooks/M7oB7f6sfTVCZ1ItHTHG/webhook-trigger/a0e6d77d-7c04-4cc0-8829-2cceb87c85cc';
