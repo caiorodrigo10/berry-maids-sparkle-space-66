@@ -52,23 +52,7 @@ const PriceEstimator = () => {
   const calculatePrice = () => {
     let basePrice = 0;
     
-    if (selectedService === 'office_cleaning_service') {
-      basePrice = Math.max(120, size[0] * 0.10);
-    } else {
-      basePrice = size[0] * 0.15;
-    }
-    
-    switch (selectedService) {
-      case 'deep_house_cleaning':
-        basePrice *= 2.0;
-        break;
-      case 'move_in_out_cleaning':
-        basePrice *= 1.5;
-        break;
-      default:
-        break;
-    }
-    
+    // Calculate rooms price first
     let roomsPrice = 0;
     roomsPrice += bedrooms * 15;           // $15 per bedroom
     roomsPrice += bathrooms * 20;          // $20 per bathroom
@@ -79,6 +63,27 @@ const PriceEstimator = () => {
     roomsPrice += diningRooms * 15;        // $15 per dining room
     roomsPrice += laundryRooms * 15;       // $15 per laundry room
     
+    // Only use square footage for office cleaning
+    if (selectedService === 'office_cleaning_service') {
+      basePrice = Math.max(120, size[0] * 0.10);
+    } else {
+      basePrice = roomsPrice;
+      
+      // Apply service multiplier for non-office services
+      switch (selectedService) {
+        case 'deep_house_cleaning':
+          basePrice *= 2.0;
+          break;
+        case 'move_in_out_cleaning':
+          basePrice *= 1.5;
+          break;
+        default:
+          // standard_house_cleaning uses 1.0x multiplier (no change)
+          break;
+      }
+    }
+    
+    // Calculate extras price
     let extrasPrice = 0;
     const extrasCounts = extras.reduce((acc: { [key: string]: number }, extra) => {
       acc[extra] = (acc[extra] || 0) + 1;
@@ -113,8 +118,7 @@ const PriceEstimator = () => {
       }
     });
 
-    const totalPrice = basePrice + roomsPrice + extrasPrice;
-    
+    const totalPrice = basePrice + extrasPrice;
     return totalPrice.toFixed(2);
   };
 
